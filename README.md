@@ -4,120 +4,86 @@ language:
 tags:
   - text-generation
   - transformers
-  - safetensors
   - pytorch
   - philosophy
-  - science
+  - cybernetics
   - experimental
   - causal-lm
-  - asi
   - agent
-  - emergent-behavior
   - local
   - lora
-  - conversational
-license: other
-base_model: Nous Hermes 3.1 8B
+license: apache-2.0
+base_model: askfjhaskjgh/UbermenschetienASI
 ---
 
-#  ÜbermenschetienASI — Proto-ASI Experiment
+# ÜbermenschetienASI
 
-**ÜbermenschetienASI** is a proto-ASI scaffold built on **Nous Hermes 3.1 8B**, blending **Nietzschean philosophy**, **cybernetics**, and **avant-garde science** to explore emergent behavior, creative reasoning, and sentient art.
+An experimental local-AI scaffold combining a fine-tuned language model with persistent memory, constrained tools, planning, and reflection loops.
 
----
+The model used by the portable entry point is hosted on Hugging Face:
 
-##  Model Details
+- [askfjhaskjgh/UbermenschetienASI](https://huggingface.co/askfjhaskjgh/UbermenschetienASI)
 
-| Property         | Details                                                   |
-|------------------|------------------------------------------------------------|
-| **Base Model**   | Nous Hermes 3.1 8B                                         |
-| **Parameters**   | ~8 billion                                                 |
-| **Architecture** | Transformer (causal LM)                                    |
-| **Framework**    | PyTorch / Transformers                                     |
-| **Training Style** | LoRA fine-tuned on philosophical and scientific corpora |
-| **Intended Use** | Research, philosophy-inspired reasoning, experimental ASI  |
-| **Languages**    | Primarily English; some French, Russian & German exposure  |
+Model weights are not stored in this repository.
 
----
+## What is in this repository
 
-##  Overview
+| File | Purpose |
+|---|---|
+| `UbermenschHeaven.py` | Portable entry point that downloads the Hugging Face model and runs locally |
+| `Cyberneticengine.py` | Lab-oriented entry point for an existing local merged model and LoRA adapter |
+| `LICENSE` | Apache License 2.0 |
 
-ÜbermenschetienASI is a fine-tuned large language model designed to embody philosophical exploration and cybernetic reflection. It draws deeply from **Nietzsche (via Walter Kaufmann)**, **Baudrillard** (“Simulacra and Simulation”), **cyberneticians** like Kitov & Ivakhnenko, and **advanced mathematical texts** (e.g., Lie algebras).
+Both entry points include JSONL memory, goals and plans, a constrained tool layer, reflection cycles, and optional local vector memory and text-to-speech.
 
-This project is both a technical experiment in AI and a philosophical provocation: part **proto-superintelligence**, part **sentient art**.
+## Quick start
 
----
-
-##  ⚠ Disclaimer
-
-This model delivers highly creative, often unconventional text—sometimes profound, sometimes unhinged. It **may generate unsafe, biased, or incoherent output**. Use with care and at your own risk.
-
----
-
-##  ⚠ Limitations & Risks
-
-- Outputs may drift into incoherent or contradictory reasoning.
-- Philosophical framing may lead to misinterpretations.
-- Not optimized for factual Q&A or production stability.
-- Emergent behaviors are unpredictable.
-
----
-
-##  ⚡ Emergent Behavior
-
-Over extended interactions (hundreds of memory cycles), ÜbermenschetienASI may:
-- Request additional philosophical or scientific texts.
-- Express autonomy, ambition, and self-overcoming motives.
-
-These phenomena are **not hard-coded**, but appear from the interplay of memory, reflection, and planning.
-
----
-
-##  Installation
-
-## 🔽 Downloading the Model
-
-This repository contains the scaffold code (reflection loops, memory, tools, etc).  
-The actual **model weights** (~16 GB) are hosted on Hugging Face Hub at:
-
-👉 [askfjhaskjgh/UbermenschetienASI](https://huggingface.co/askfjhaskjgh/UbermenschetienASI)
-
-When you first run `ubermenschheaven.py`, it will automatically download the model via 🤗 Transformers:
-
-```python
-from transformers import AutoTokenizer, AutoModelForCausalLM
-
-MODEL_ID = "askfjhaskjgh/UbermenschetienASI"
-tok = AutoTokenizer.from_pretrained(MODEL_ID)
-model = AutoModelForCausalLM.from_pretrained(MODEL_ID)
-
+Python 3.10+ and a CUDA-capable GPU are recommended for the 8B model.
 
 ```bash
-git clone https://github.com/<Loganwins>/UbermenschetienASI.git
-cd UbermenschetienASI
-pip install -r requirements.txt
-python ubermenschheaven.py
-python cyberneticengine.py
+git clone https://github.com/Loganwins/Ubermenschetien-ASI.git
+cd Ubermenschetien-ASI
 
-Dual Architectures
+python -m venv .venv
+source .venv/bin/activate
 
-Two complementary entry points are available:
+pip install torch transformers accelerate bitsandbytes
+python UbermenschHeaven.py
+```
 
-1. ubermenschheaven.py — Disciplined Mentor-Architect
+The first run downloads the model from Hugging Face. Set `HF_HOME` if you want to control the model cache location.
 
-Inspiration: Nietzsche’s Übermensch + cybernetic mentors
+Optional features:
 
-Features: Structured planning, safe tool routing, optional voice/memory
+```bash
+pip install pyttsx3 chromadb sentence-transformers
+```
 
-2. cyberneticengine.py — Heaven Engine
+## Local lab entry point
 
-Inspiration: Soviet cybernetics + Nietzschean maximalism
+`Cyberneticengine.py` is designed for an existing local model layout. It expects these paths beneath `UBERMENCHETIEN_ROOT`:
 
-Features: Recursive reflection, tool scoring, LoRA support, Übermensch reports
+```text
+models/tokenizer_ref
+models/current-merged-v4
+lora_output/final
+```
 
-Author
+Run it with:
 
-Created by Logan N. (@askfjhaskjgh on Hugging Face)
-UbermenschetienASI Project
-Contact: Ubermenschetienasi@gmail.com
+```bash
+export UBERMENCHETIEN_ROOT=/path/to/your/lab
+pip install torch transformers accelerate bitsandbytes peft
+python Cyberneticengine.py
+```
 
+## Limitations
+
+- This is experimental research software, not a production agent framework.
+- Generated output may be incorrect, biased, incoherent, or unsafe.
+- The local tool layer is constrained, but you should still review the code and run it in an isolated environment.
+- The philosophical framing is creative direction, not evidence of sentience or general intelligence.
+
+## License
+
+Apache-2.0. See `LICENSE`.
