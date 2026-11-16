@@ -16,7 +16,7 @@ license: apache-2.0
 base_model: askfjhaskjgh/UbermenschetienASI
 ---
 
-# ÜbermenschetienASI
+# Cybernetic Agent Lab
 
 An experimental local-AI scaffold combining a fine-tuned language model with persistent memory, constrained tools, planning, and reflection loops.
 
@@ -41,8 +41,8 @@ Both entry points include JSONL memory, goals and plans, a constrained tool laye
 Python 3.10+ and a CUDA-capable GPU are recommended for the 8B model.
 
 ```bash
-git clone https://github.com/Loganwins/Ubermenschetien-ASI.git
-cd Ubermenschetien-ASI
+git clone https://github.com/Loganwins/cybernetic-agent-lab.git
+cd cybernetic-agent-lab
 
 python -m venv .venv
 source .venv/bin/activate
